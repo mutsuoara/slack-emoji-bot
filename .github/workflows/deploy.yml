@@ -20,8 +20,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
+        python -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
         pip install -r requirements.txt
+        pip install zappa
 
     - name: Deploy with Zappa
       env:
@@ -29,6 +32,6 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: us-west-1
       run: |
-        pip install zappa
+        source venv/bin/activate
         zappa update dev
 
