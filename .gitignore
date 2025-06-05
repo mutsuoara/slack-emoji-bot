@@ -1,0 +1,14 @@
+# Ignore virtualenv
+venv/
+__pycache__/
+
+# Ignore secrets
+.env
+
+# Ignore OS-specific files
+.DS_Store
+
+# Ignore zappa packages
+*.zip
+.zappa/
+

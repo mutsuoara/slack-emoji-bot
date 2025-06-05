@@ -1,0 +1,11 @@
+{
+  "dev": {
+    "app_function": "app.app",
+    "aws_region": "us-west-1",
+    "profile_name": "default",
+    "project_name": "slack-emoji-bot",
+    "runtime": "python3.11",
+    "s3_bucket": "slack-emoji-bot-deploys"
+  }
+}
+
