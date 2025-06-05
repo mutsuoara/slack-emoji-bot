@@ -13,7 +13,7 @@ def slack_events():
 
     event = data.get("event", {})
     if event.get("type") == "reaction_added" and event.get("reaction") == os.environ["TRIGGER_EMOJI"]:
-        if event["item"]["channel"] == os.environ["SOURCE_CHANNELS"].split(","):
+        if event["item"]["channel"] in os.environ["SOURCE_CHANNELS"].split(","):
             try:
                 message = client.conversations_history(
                     channel=event["item"]["channel"],
