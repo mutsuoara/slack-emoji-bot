@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from slack_sdk import WebClient
+from datetime import datetime
 import os
 
 app = Flask(__name__)
@@ -23,10 +24,12 @@ def slack_events():
                 )["messages"][0]
                 text = message.get("text", "")
                 user = message.get("user", "unknown")
+                ts = float(message.get("ts", 0))
+                date_sent = datetime.fromtimestamp(ts).strftime("%Y-%m-%d %H:%M:%S")
 
                 client.chat_postMessage(
                     channel=os.environ["TARGET_CHANNEL"],
-                    text=f"✅ *Forwarded message from <@{user}>:*\n> {text}"
+                    text=f"✅ *Forwarded message from <@{user}>:*(sent on {date_sent})\n> {text}"
                 )
             except Exception as e:
                 print("Error:", e)
