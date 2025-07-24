@@ -65,3 +65,7 @@ def slack_events():
                 print(f"❌ Error forwarding message {message_id}: {e}")
 
     return "", 200
+
+@app.route("/", methods=["GET"])
+def health_check():
+    return "Slack emoji bot is alive!", 200
